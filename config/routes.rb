@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :spreadsheets  do
     member do
-      get :tabs
+      get :tab
       get :range
     end
 

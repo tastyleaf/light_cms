@@ -1,0 +1,18 @@
+<div class="all-tabs">
+  <h1>TABS</h1>
+  <% @tabs.each do |tab| %>   
+    <%= link_to spreadsheet_path(@spreadsheet, spreadsheet: {:tab_name => "#{tab.properties.title}", :tab_id => "#{tab.properties.sheet_id}" } ), method: :patch do %>
+      <button type="submit" form="form1" value="Submit" class="choice" action= "<% spreadsheet_path(@spreadsheet )%>" method= "put">
+        <p><%= tab.properties.title %></p>
+          <div class="tab">
+            <iframe  src=<%="https://docs.google.com/spreadsheets/d/#{@spreadsheet.spreadsheet_id}/edit#gid=#{tab.properties.sheet_id}"%> ></iframe>
+          </div>
+      </button> 
+    <% end %>
+  <% end %>
+</div>
+<div class="back">
+<%= link_to 'back', url_for(:back), class: "btn-back" %>
+</div>
+ 
+ 
