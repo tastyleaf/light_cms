@@ -1,5 +1,5 @@
 class SpreadsheetsController < ApplicationController
-  def idnex
+  def index
     @spreadsheets = Spreadsheet.all
   end
 

@@ -1,1 +1,16 @@
 <h1>Index</h1>
+<%= link_to "New", new_spreadsheet_path  %>
+<ul>
+  <% @spreadsheets.each do |spreadsheet| %>
+    <li>
+      <%= spreadsheet.spreadsheet_id %>
+      <%= spreadsheet.tab_name %>
+      <%= spreadsheet.range %> 
+      <%= link_to "Show", spreadsheet_path(spreadsheet) %>
+      <%= link_to "Edit", edit_spreadsheet_path(spreadsheet) %>
+      <%= link_to "Delete", spreadsheet_path(spreadsheet), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Export as javascript", js_spreadsheets_path, class: "btn btn-primary" %>
