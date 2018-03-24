@@ -1,0 +1,20 @@
+<div class="some-tab">
+  <h1>Specify The Range</h1>
+    <div class="tab">
+      <iframe src=<%="https://docs.google.com/spreadsheets/d/#{@spreadsheet.spreadsheet_id}/edit#gid=#{@spreadsheet.tab_id}" %>></iframe>
+    </div>
+</div>
+<div class="type-range">
+  <%= form_for @spreadsheet do |f| %>
+    <div class="form-group">
+      <%= f.text_field :range, autofocus: true, placeholder: "Ex: A1:D5" %>
+    </div>
+    <%= f.submit 'NEXT' %>
+  <% end %>
+  <% if @spreadsheet.errors.present? %>
+    <ul class="after-rendering"><li><%= @spreadsheet.errors.full_messages.to_sentence%></li></ul>
+  <% end %>
+</div>
+ <div class="back">
+  <%= link_to 'back', url_for(:back), class: "btn-back" %>
+</div>

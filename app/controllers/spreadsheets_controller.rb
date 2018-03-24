@@ -30,9 +30,20 @@ class SpreadsheetsController < ApplicationController
     
   end
 
+  def update
+    set_spreadsheet
+    if @spreadsheet.update_attributes(spreadsheet_params)
+      if @spreadsheet.range == nil
+        redirect_to range_spreadsheet_path(@spreadsheet)
+      else
+        redirect_to spreadsheets_path
+      end 
+    end
+  end
 
-  def show
-    
+
+  def range
+    set_spreadsheet
   end
 
 
