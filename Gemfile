@@ -34,7 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
   gem 'google-api-client'
-
+  gem 'bootstrap-sass', '~> 3.3.7'
+  gem 'jquery-rails'
 
 
 
