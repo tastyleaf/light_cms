@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   end  
 
 
-  root "spreadsheets#index"
+  root "spreadsheets#new"
 end
