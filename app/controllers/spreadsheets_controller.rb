@@ -35,16 +35,25 @@ class SpreadsheetsController < ApplicationController
     if @spreadsheet.update_attributes(spreadsheet_params)
       if @spreadsheet.range == nil
         redirect_to range_spreadsheet_path(@spreadsheet)
+      elsif @spreadsheet.link_name == nil
+        redirect_to link_spreadsheet_path(@spreadsheet)
       else
         redirect_to spreadsheets_path
       end 
     end
   end
 
+  def link
+    set_spreadsheet
+  end
+
 
   def range
     set_spreadsheet
   end
+
+
+
 
 
   private
