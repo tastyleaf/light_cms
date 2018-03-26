@@ -1,7 +1,7 @@
 <div class="all-tabs">
   <h1>TABS</h1>
   <% @tabs.each do |tab| %>   
-    <%= link_to update_tab_spreadsheet_path(@spreadsheet, spreadsheet: {:tab_name => "#{tab.properties.title}", :tab_id => "#{tab.properties.sheet_id}" } ) , class: "choice" do %>
+    <%= link_to update_tab_spreadsheet_path(@spreadsheet, spreadsheet: {:tab_name => "#{tab.properties.title}", :tab_id => "#{tab.properties.sheet_id}" } ), method: :patch, class: "choice" do %>
       <p><%= tab.properties.title %></p>
         <div class="tab">
           <iframe  src=<%="https://docs.google.com/spreadsheets/d/#{@spreadsheet.spreadsheet_id}/edit#gid=#{tab.properties.sheet_id}"%> ></iframe>
