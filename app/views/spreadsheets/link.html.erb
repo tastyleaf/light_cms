@@ -1,5 +1,9 @@
+<div>
+  <h1>Choose a name for the link</h1>
+</div>
+
 <div class="type-id">
-  <%= form_for @spreadsheet do |f| %>
+  <%= form_for @spreadsheet, :url => update_link_spreadsheet_path, method: :patch  do |f| %>
     <div class="form-group">
       <%= f.text_field :link_name, autofocus: true, placeholder: "Enter your link name" %>
     </div>
@@ -9,3 +13,8 @@
     <ul class="after-rendering"><li><%= @spreadsheet.errors.full_messages.to_sentence%></li></ul>
   <% end %>
 </div>
+
+
+
+<%= link_to "Choose another spreadsheet", tab_spreadsheet_path(@spreadsheet), class: "btn btn-primary" %>
+ 
