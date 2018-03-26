@@ -6,9 +6,6 @@ Rails.application.routes.draw do
       get :tab
       get :range
       get :link
-      get :update_tab
-      get :update_range
-      get :update_link
     end
 
     collection do
