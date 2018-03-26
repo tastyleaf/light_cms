@@ -1,16 +1,29 @@
 <h1>Index</h1>
-<%= link_to "New", new_spreadsheet_path  %>
-<ul>
-  <% @spreadsheets.each do |spreadsheet| %>
-    <li>
-      <%= spreadsheet.spreadsheet_id %>
-      <%= spreadsheet.tab_name %>
-      <%= spreadsheet.range %> 
-      <%= link_to "Show", spreadsheet_path(spreadsheet) %>
-      <%= link_to "Edit", edit_spreadsheet_path(spreadsheet) %>
-      <%= link_to "Delete", spreadsheet_path(spreadsheet), method: :delete %>
-    </li>
-  <% end %>
-</ul>
 
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>ID</th>
+    <th>Spreadsheet ID</th>
+    <th>Tab name</th>
+    <th>Range</th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @spreadsheets.each do |spreadsheet| %>
+    <tr>
+      <th scope="row"><%= spreadsheet.id %></th>
+      <td><%= spreadsheet.spreadsheet_id %></td>
+      <td><%= spreadsheet.tab_name %></td>
+      <td><%= spreadsheet.range %></td>
+      <td>
+        <%= link_to "Edit", edit_spreadsheet_path(spreadsheet) %>
+        <%= link_to "Delete", spreadsheet_path(spreadsheet), method: :delete, data: { confirm: "Are you sure?"} %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Add a new spreadsheet", new_spreadsheet_path, class: "btn btn-success"  %>
 <%= link_to "Export as javascript", js_spreadsheets_path, class: "btn btn-primary" %>
