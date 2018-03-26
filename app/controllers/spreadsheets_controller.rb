@@ -40,6 +40,12 @@ class SpreadsheetsController < ApplicationController
     end
   end
 
+  def update_tab
+    set_spreadsheet
+    if @spreadsheet.update_attributes(spreadsheet_params)
+      redirect_to range_spreadsheet_path(@spreadsheet)
+    end  
+  end
   def link
     set_spreadsheet
   end
