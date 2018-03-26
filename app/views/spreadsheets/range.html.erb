@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="type-range">
-  <%= form_for @spreadsheet do |f| %>
+  <%= form_for @spreadsheet, :url => update_range_spreadsheet_path, method: :patch do |f| %>
     <div class="form-group">
       <%= f.text_field :range, autofocus: true, placeholder: "Ex: A1:D5" %>
     </div>

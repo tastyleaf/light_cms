@@ -46,6 +46,13 @@ class SpreadsheetsController < ApplicationController
       redirect_to range_spreadsheet_path(@spreadsheet)
     end  
   end
+
+  def update_range
+    set_spreadsheet
+    if @spreadsheet.update_attributes(spreadsheet_params)
+     redirect_to link_spreadsheet_path(@spreadsheet)
+    end 
+  end
   def link
     set_spreadsheet
   end
