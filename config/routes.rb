@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get :tab
       get :range
+      get :link
     end
 
     collection do
