@@ -20,13 +20,10 @@ class SpreadsheetsController < ApplicationController
 
   def tab
     set_spreadsheet
-
-    require 'google/apis/sheets_v4'
-    service = Google::Apis::SheetsV4::SheetsService.new
-    service.key = 'AIzaSyCw1eTY-S9Xuxqv4AZ_bfHDlxEJ3KsLuig'
-    service.authorization = nil
-    @reponses = service.get_spreadsheet(@spreadsheet.spreadsheet_id)
-    @tabs = service.get_spreadsheet(@spreadsheet.spreadsheet_id, fields: "sheets.properties").sheets
+    set_api
+ 
+    @reponses = @service.get_spreadsheet(@spreadsheet.spreadsheet_id)
+    @tabs = @service.get_spreadsheet(@spreadsheet.spreadsheet_id, fields: "sheets.properties").sheets
     
   end
 
@@ -66,6 +63,14 @@ class SpreadsheetsController < ApplicationController
   def set_spreadsheet
     @spreadsheet = Spreadsheet.find(params[:id])    
   end
+
+  def set_api
+ 
+    @service = Google::Apis::SheetsV4::SheetsService.new
+    @service.key = 'AIzaSyCw1eTY-S9Xuxqv4AZ_bfHDlxEJ3KsLuig'
+    @service.authorization = nil
+  end
+
 
   def spreadsheet_params
     params.require(:spreadsheet).permit(:spreadsheet_id, :tab_id, :tab_name, :range, :link_name)
