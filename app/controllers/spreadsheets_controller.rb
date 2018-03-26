@@ -65,7 +65,7 @@ class SpreadsheetsController < ApplicationController
   end
 
   def set_api
- 
+    require 'google/apis/sheets_v4'
     @service = Google::Apis::SheetsV4::SheetsService.new
     @service.key = 'AIzaSyCw1eTY-S9Xuxqv4AZ_bfHDlxEJ3KsLuig'
     @service.authorization = nil
