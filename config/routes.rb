@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       patch :update_tab
       patch :update_range
       patch :update_link
+      get :choose_other
     end
 
     collection do
