@@ -53,7 +53,12 @@ class SpreadsheetsController < ApplicationController
   end
 
 
-
+  def destroy
+    set_spreadsheet
+    @spreadsheet.destroy
+    flash[:alert] = "Spreadsheet was deleted"
+    redirect_to spreadsheets_path
+  end
 
 
   private
