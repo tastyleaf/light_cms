@@ -27,19 +27,6 @@ class SpreadsheetsController < ApplicationController
     
   end
 
-  def update
-    set_spreadsheet
-    if @spreadsheet.update_attributes(spreadsheet_params)
-      if @spreadsheet.range == nil
-        redirect_to range_spreadsheet_path(@spreadsheet)
-      elsif @spreadsheet.link_name == nil
-        redirect_to link_spreadsheet_path(@spreadsheet)
-      else
-        redirect_to spreadsheets_path
-      end 
-    end
-  end
-
   def update_tab
     set_spreadsheet
     if @spreadsheet.update_attributes(spreadsheet_params)
@@ -60,6 +47,8 @@ class SpreadsheetsController < ApplicationController
      redirect_to  spreadsheets_path(@spreadsheet)
     end 
   end
+ 
+
   def link
     set_spreadsheet
   end
