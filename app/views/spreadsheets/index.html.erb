@@ -1,5 +1,16 @@
 <h1>Index</h1>
 
+ 
+
+ 
+<% unless params[:id] %>
+  <%= link_to "Add a new spreadsheet", new_spreadsheet_path, class: "btn btn-success"  %>
+<% end %>
+
+<%= link_to "Export as javascript", js_spreadsheets_path, class: "btn btn-primary" %>
+
+
+
 <table class="table table-striped table-bordered">
   <thead>
     <th>Link name</th>    
@@ -10,6 +21,24 @@
     <th></th>
   </thead>
   <tbody>
+
+    <% if params[:id] %>
+      <div class="form-inline" >
+        <%= form_for @spreadsheet do |f| %>
+          <div class="form-group">
+            <td><%= f.text_field :link_name, placeholder: "Link name",  class: "form-control" %></td>
+            <td><%= f.text_field :spreadsheet_id, placeholder: "Spreadsheet ID",  class: "form-control" %></td>
+            <td><%= f.text_field :tab_name, placeholder: "Tab name",  class: "form-control" %></td>
+            <td><%= f.text_field :range, placeholder: "Range",  class: "form-control" %></td>
+            <td><%= f.submit class: "btn btn-secondary" %></td>
+          </div>
+          <% if @spreadsheet.errors.any? %>
+            <%= @spreadsheet.errors.full_messages.to_sentence %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
     <% @spreadsheets.each do |spreadsheet| %>
     <tr>
       <td><%= spreadsheet.link_name %></td>
@@ -17,7 +46,7 @@
       <td><%= spreadsheet.tab_name %></td>
       <td><%= spreadsheet.range %></td>
       <td>
-        <%= link_to "Edit", edit_spreadsheet_path(spreadsheet) %>
+        <%= link_to "Edit", spreadsheets_path(id: spreadsheet.id) %>
         <%= link_to "Delete", spreadsheet_path(spreadsheet), method: :delete, data: { confirm: "Are you sure?"} %>
       </td>
     </tr>
@@ -25,5 +54,4 @@
   </tbody>
 </table>
 
-<%= link_to "Add a new spreadsheet", new_spreadsheet_path, class: "btn btn-success"  %>
-<%= link_to "Export as javascript", js_spreadsheets_path, class: "btn btn-primary" %>
+ 

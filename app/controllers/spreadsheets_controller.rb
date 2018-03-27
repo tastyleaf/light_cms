@@ -1,6 +1,11 @@
 class SpreadsheetsController < ApplicationController
   def index
     @spreadsheets = Spreadsheet.all
+    if params[:id]
+      set_spreadsheet
+    else
+      @spreadsheet = Spreadsheet.new
+    end  
   end
 
   def new
@@ -25,6 +30,18 @@ class SpreadsheetsController < ApplicationController
     @reponses = @service.get_spreadsheet(@spreadsheet.spreadsheet_id)
     @tabs = @service.get_spreadsheet(@spreadsheet.spreadsheet_id, fields: "sheets.properties").sheets
     
+  end
+
+
+  def update
+    set_spreadsheet
+    if @spreadsheet.update_attributes(spreadsheet_params)
+      flash[:notice] = "Spreadsheet was successfully updated"
+      redirect_to spreadsheets_path
+    else
+      @spreadsheet = Category.all
+      render :index
+    end  
   end
 
   def update_tab
